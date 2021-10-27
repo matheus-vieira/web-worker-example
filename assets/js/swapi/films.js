@@ -1,8 +1,8 @@
-const URL = "https://swapi.dev/api/films/";
+const URL = "https://swapi.dev/api/films";
 
 const getFilmList = async function ({ name }) {
     let url = URL;
-    if (name) url += "search=" + name;
+    if (name) url += "?search=" + name;
 
     const response = await fetch(url)
     if (!response.ok) {
