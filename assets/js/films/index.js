@@ -4,7 +4,7 @@
 
     function getList() {
         holder.innerHTML = loadingTemplate;
-        const response = swapiWorker.postMessage("films");
+        swapiWorker.postMessage("films");
         console.log(response);
     }
     var filmList = [],
@@ -22,6 +22,12 @@
         const obj = {};
         render(obj);
     })
+    swapiWorker.onmessage = function(e) {
+        console.log(e);
+        const obj = {};
+        render(obj);
+      }
+      
 
     function render(obj) {
         // remove loading-table id from table
