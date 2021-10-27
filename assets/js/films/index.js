@@ -18,10 +18,6 @@
         holder = d.getElementById("films-table");
     }
 
-    swapiWorker.onmessage(e => {
-        const obj = {};
-        render(obj);
-    })
     swapiWorker.onmessage = function(e) {
         console.log(e);
         const obj = {};
