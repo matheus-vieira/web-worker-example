@@ -7,7 +7,7 @@
 //     vehicles: "https://swapi.dev/api/vehicles/"
 // }
 
-importScripts('swapi-films');
+importScripts('swapi-films.js');
 
 const API_METHODS = Object.create(null, {
     "films": { enumerable: true, value: getList }
