@@ -7,14 +7,14 @@
 //     vehicles: "https://swapi.dev/api/vehicles/"
 // }
 
-const API_METHODS = Object.create(null, {
-    "films": { enumerable: true, value: getFilms },
-    "people": { enumerable: true, value: getPeople },
-    "planets": { enumerable: true, value: getPlanets },
-    "species": { enumerable: true, value: getSpecies },
-    "starships": { enumerable: true, value: getStarships },
-    "vehicles": { enumerable: true, value: getVehicles },
-});
+// const API_METHODS = Object.create(null, {
+//     "films": { enumerable: true, value: getFilms },
+//     "people": { enumerable: true, value: getPeople },
+//     "planets": { enumerable: true, value: getPlanets },
+//     "species": { enumerable: true, value: getSpecies },
+//     "starships": { enumerable: true, value: getStarships },
+//     "vehicles": { enumerable: true, value: getVehicles },
+// });
 
 onmessage = function (e) {
     console.log('SWAPI - Worker: Calling the api');
