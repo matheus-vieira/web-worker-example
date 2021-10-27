@@ -13,6 +13,8 @@ const getFilmList = async function ({ name }) {
     const json = await response.json();
     for (let i = 0; i < json.results.length; i++)
         SWAPI_WORKER.postMessage(json.results[i]);
+
+    SWAPI_WORKER.postMessage({ end: true });
 };
 
 const getFilm = async function (id) {
