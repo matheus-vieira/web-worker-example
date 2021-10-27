@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars: Movies</title>
 </head>
+
 <body>
+    <script type="text/html" id="loading-row">
+        <tr id="loading-table">
+            <td colspan="3">Loading data</td>
+        </tr>
+    </script>
+    <script type="text/html" id="table-row">
+        <tr id="loading-table">
+            <td>{title}</td>
+            <td>{release_date}</td>
+            <td>details link</td>
+        </tr>
+    </script>
+
+
     Here you can find all movies that have been produced
-    
-    <table>
+
+    <table id="films-table">
         <thead>
             <tr>
                 <th>Title</th>
@@ -21,4 +37,5 @@
     </table>
     <script src="/web-worker-example/assets/js/films/index.js"></script>
 </body>
+
 </html>
