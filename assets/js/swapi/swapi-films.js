@@ -1,17 +1,13 @@
 const URL = "https://swapi.dev/api/films/";
 
-function getList() {
-    var url = URL;
-}
-
-function getItem(id) {
-    var url = URL;
-    if (id) url += id;
-}
-
-export function getFilms(id) {
-    if (id)
-        return getItem(id);
-    
-    return getList();
+async function getList(worker) {
+    const response = await fetch(URL)
+    if (!response.ok) {
+        alert("HTTP-Error: " + response.status);
+        worker.postMessage("HTTP-Error: " + response.status);
+        return;
+    }
+    const json = await response.json();
+    for(let i = 0; i < json.Results.length; i++)
+        worker.postMessage(json.Results[i]);
 }

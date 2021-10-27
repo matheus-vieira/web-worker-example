@@ -16,7 +16,8 @@
 //     "vehicles": { enumerable: true, value: getVehicles },
 // });
 
-onmessage = function (e) {
+onmessage = async function (e) {
     console.log('SWAPI - Worker: Calling the api');
-    console.log(e);
+    console.log(e.data);
+    
 };

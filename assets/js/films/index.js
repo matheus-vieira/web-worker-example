@@ -19,8 +19,8 @@
 
     swapiWorker.onmessage = function(e) {
         console.log(e);
-        const obj = {};
-        render(obj);
+        if (e.data)
+            render(e.data);
       }
       
 
