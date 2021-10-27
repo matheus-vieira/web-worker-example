@@ -6,11 +6,12 @@
 //     starships: "https://swapi.dev/api/starships/",
 //     vehicles: "https://swapi.dev/api/vehicles/"
 // }
-
-importScripts('swapi-films.js');
+const SWAPI_WORKER = this;
+importScripts('films.js');
 
 const API_METHODS = Object.create(null, {
-    "films": { enumerable: true, value: getList }
+    "film-list": { enumerable: true, value: getFilmList },
+    "film": { enumerable: true, value: getFilm }
 });
 
 onmessage = async function (e) {

@@ -21,7 +21,7 @@
 
     function getList() {
         loadingTemplate.className = "";
-        swapiWorker.postMessage({ route: "films" });
+        swapiWorker.postMessage({ route: "film-list" });
     }
 
     function render(obj) {
