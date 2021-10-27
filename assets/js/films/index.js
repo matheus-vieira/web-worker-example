@@ -20,7 +20,7 @@
     swapiWorker.onmessage = function(e) {
         console.log(e);
         if (e.data)
-            render(e.data);
+            setTimeout(() => render(e.data), 2000);
       }
       
 
