@@ -14,7 +14,7 @@
     function getDomElements() {
         loadingTemplate = d.getTemplate("loading-row");
         rowTemplate = d.getTemplate("table-row");
-        holder = d.getElementById("films-table");
+        holder = d.getElementById("films-table-body");
     }
 
     swapiWorker.onmessage = function(e) {
