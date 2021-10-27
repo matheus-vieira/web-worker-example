@@ -14,7 +14,7 @@
         filmTitle = d.getElementById("filmTitle");
 
         filmTitle.addEventListener("input", function onInputHandler(e) {
-            if (filmTitle.value.length < 3) return;
+            if (filmTitle.value && filmTitle.value.length < 3) return;
 
             getList(filmTitle.value);
         });
