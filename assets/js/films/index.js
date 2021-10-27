@@ -14,9 +14,12 @@
         filmTitle = d.getElementById("filmTitle");
 
         filmTitle.addEventListener("input", function onInputHandler(e) {
-           if (filmTitle.value.length < 3) return;
-           holder.innerHTML = "";
-           getList(filmTitle.value);
+            if (filmTitle.value.length < 3) return;
+
+            while (holder.lastElementChild.id != loadingTemplate.id)
+                holder.deleteRow(1);
+
+            getList(filmTitle.value);
         });
     }
 
