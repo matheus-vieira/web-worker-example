@@ -4,7 +4,7 @@ const getFilmList = async function ({ name }) {
     const url = URL;
     if (name) url += "search=" + name;
 
-    const response = await fetch(URL)
+    const response = await fetch(url)
     if (!response.ok) {
         SWAPI_WORKER.postMessage("HTTP-Error: " + response.status);
         return;
