@@ -3,7 +3,7 @@
     const swapiWorker = new Worker('/web-worker-example/assets/js/swapi/swapi-worker.js');
 
     function getList() {
-        loadingTemplate.style.display = "block";
+        loadingTemplate.style.display = "";
         swapiWorker.postMessage({ route: "films" });
     }
     var filmList = [],
