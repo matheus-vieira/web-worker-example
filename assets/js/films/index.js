@@ -1,11 +1,6 @@
 (function (w, d) {
     "use strict";
     const swapiWorker = new Worker('/web-worker-example/assets/js/swapi/swapi-worker.js');
-
-    function getList() {
-        loadingTemplate.className = "";
-        swapiWorker.postMessage({ route: "films" });
-    }
     var filmList = [],
         loadingTemplate = null,
         rowTemplate = null,
@@ -17,22 +12,21 @@
         holder = d.getElementById("films-table-body");
     }
 
-    swapiWorker.onmessage = function(e) {
-        console.log(e);
-        if (e.data){
+    swapiWorker.onmessage = function (e) {
+        if (e.data) {
             loadingTemplate.className = "visually-hidden";
-            setTimeout(() => render(e.data), 2000);
+            render(e.data)
         }
-      }
-      
-
-    function render(obj) {
-        // remove loading-table id from table
-        var parsedTpl = rowTemplate.supplant(obj);
-        holder.innerHTML += parsedTpl;
     }
 
-    function init() {
+    function getList() {
+        loadingTemplate.className = "";
+        swapiWorker.postMessage({ route: "films" });
+    }
+
+    function render(obj) {
+        var parsedTpl = rowTemplate.supplant(obj);
+        holder.innerHTML += parsedTpl;
     }
 
     w.onload = function onLoad() {
