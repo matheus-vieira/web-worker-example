@@ -15,6 +15,7 @@
 
         filmTitle.addEventListener("input", function onInputHandler(e) {
            if (filmTitle.value.length < 3) return;
+           holder.innerHTML = "";
            getList(filmTitle.value);
         });
     }
