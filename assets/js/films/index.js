@@ -5,7 +5,6 @@
     function getList() {
         holder.innerHTML = loadingTemplate;
         swapiWorker.postMessage("films");
-        console.log(response);
     }
     var filmList = [],
         loadingTemplate = null,
