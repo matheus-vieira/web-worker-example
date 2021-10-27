@@ -30,12 +30,12 @@
     }
 
     function getList(name) {
-        loadingTemplate.classList.remove(VISUALLY_HIDDEN);
+        loadingTemplate.className = null;
 
         while (holder.lastElementChild.id != loadingTemplate.id)
             holder.deleteRow(1);
 
-            swapiWorker.postMessage({ route: "film-list", params: { name } });
+        swapiWorker.postMessage({ route: "film-list", params: { name } });
     }
 
     function render(obj) {
