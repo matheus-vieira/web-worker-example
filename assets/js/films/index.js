@@ -12,7 +12,7 @@
         holder = null;
 
     function getDomElements() {
-        loadingTemplate = d.getTemplate("loading-table");
+        loadingTemplate = d.getElementById("loading-table");
         rowTemplate = d.getTemplate("table-row");
         holder = d.getElementById("films-table-body");
     }
