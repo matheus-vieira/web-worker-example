@@ -3,7 +3,7 @@
     const swapiWorker = new Worker('/web-worker-example/assets/js/swapi/swapi-worker.js');
 
     function getList() {
-        loadingTemplate.style.display = "";
+        loadingTemplate.className = "";
         swapiWorker.postMessage({ route: "films" });
     }
     var filmList = [],
@@ -20,7 +20,7 @@
     swapiWorker.onmessage = function(e) {
         console.log(e);
         if (e.data){
-            loadingTemplate.style.display = "none";
+            loadingTemplate.className = "visually-hidden";
             setTimeout(() => render(e.data), 2000);
         }
       }
