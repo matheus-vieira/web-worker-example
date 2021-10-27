@@ -28,7 +28,11 @@ async function getList(worker) {
     
     const json = await response.json();
     for(let i = 0; i < json.results.length; i++)
-        worker.postMessage(json.results[i]);
+        sendMessage(worker, json.results[i]);
+}
+
+function sendMessage(worker, obj) {
+    setTimeout(() => worker.postMessage(obj), 200);
 }
 
 onmessage = async function (e) {
