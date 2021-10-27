@@ -4,7 +4,7 @@
 
     function getList() {
         holder.innerHTML = loadingTemplate;
-        swapiWorker.postMessage("films");
+        swapiWorker.postMessage({ route: "films" });
     }
     var filmList = [],
         loadingTemplate = null,
