@@ -15,5 +15,5 @@ const API_METHODS = Object.create(null, {
 });
 
 onmessage = async function (e) {
-    API_METHODS[e.data.route](this);
+    API_METHODS[e.data.route](e.data.params);
 };
