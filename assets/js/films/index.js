@@ -1,15 +1,22 @@
 (function (w, d) {
     "use strict";
     const swapiWorker = new Worker('/web-worker-example/assets/js/swapi/swapi-worker.js');
-    var filmList = [],
+    let filmList = [],
         loadingTemplate = null,
         rowTemplate = null,
-        holder = null;
+        holder = null,
+        filmTitle = null;
 
     function getDomElements() {
         loadingTemplate = d.getElementById("loading-table");
         rowTemplate = d.getTemplate("table-row");
         holder = d.getElementById("films-table-body");
+        filmTitle = d.getElementById("filmTitle");
+
+        filmTitle.addEventListener("input", function onInputHandler(e) {
+           if (filmTitle.value.length < 3) return;
+           getList(filmTitle.value);
+        });
     }
 
     swapiWorker.onmessage = function (e) {
@@ -19,9 +26,9 @@
         }
     }
 
-    function getList() {
+    function getList(name) {
         loadingTemplate.className = "";
-        swapiWorker.postMessage({ route: "film-list", params: {} });
+        swapiWorker.postMessage({ route: "film-list", params: { name } });
     }
 
     function render(obj) {

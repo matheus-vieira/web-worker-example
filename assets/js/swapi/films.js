@@ -1,6 +1,9 @@
 const URL = "https://swapi.dev/api/films/";
 
-const getFilmList = async function () {
+const getFilmList = async function ({ name }) {
+    const url = URL;
+    if (name) url += "search=" + name;
+
     const response = await fetch(URL)
     if (!response.ok) {
         SWAPI_WORKER.postMessage("HTTP-Error: " + response.status);
