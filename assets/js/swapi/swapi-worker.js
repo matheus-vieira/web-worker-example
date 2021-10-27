@@ -7,32 +7,10 @@
 //     vehicles: "https://swapi.dev/api/vehicles/"
 // }
 
-// const API_METHODS = Object.create(null, {
-//     "films": { enumerable: true, value: getFilms },
-//     "people": { enumerable: true, value: getPeople },
-//     "planets": { enumerable: true, value: getPlanets },
-//     "species": { enumerable: true, value: getSpecies },
-//     "starships": { enumerable: true, value: getStarships },
-//     "vehicles": { enumerable: true, value: getVehicles },
-// });
-
-const URL = "https://swapi.dev/api/films/";
-
-async function getList(worker) {
-    const response = await fetch(URL)
-    if (!response.ok) {
-        alert("HTTP-Error: " + response.status);
-        worker.postMessage("HTTP-Error: " + response.status);
-        return;
-    }
-
-    const json = await response.json();
-    for (let i = 0; i < json.results.length; i++)
-        worker.postMessage(json.results[i]);
-}
+const API_METHODS = Object.create(null, {
+    "films": { enumerable: true, value: getList }
+});
 
 onmessage = async function (e) {
-    console.log('SWAPI - Worker: Calling the api');
-    console.log(e.data);
-    await getList(this);
+    API_METHODS[e.data.route](this);
 };
