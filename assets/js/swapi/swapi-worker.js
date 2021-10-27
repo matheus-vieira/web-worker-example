@@ -1,4 +1,3 @@
-importScripts('swapi-films.js');
 const SWAPI_ROUTES = {
     films: "https://swapi.dev/api/films/",
     people: "https://swapi.dev/api/people/",
