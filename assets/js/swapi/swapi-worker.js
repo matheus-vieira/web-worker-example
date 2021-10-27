@@ -6,9 +6,6 @@
 //     starships: "https://swapi.dev/api/starships/",
 //     vehicles: "https://swapi.dev/api/vehicles/"
 // }
-const API_METHODS = Object.create(null, {
-    "films": { enumerable: true, value: getList }
-});
 
 onmessage = async function (e) {
     API_METHODS[e.data.route](this);
@@ -27,3 +24,7 @@ const getList = async function (worker) {
     for (let i = 0; i < json.results.length; i++)
         worker.postMessage(json.results[i]);
 };
+
+const API_METHODS = Object.create(null, {
+    "films": { enumerable: true, value: getList }
+});
