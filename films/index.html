@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars: Movies</title>
+    <style>
+        table #loading-table {
+          text-align: center;
+          vertical-align: middle;
+        }
+      </style>
 </head>
 
 <body>
-    <script type="text/html" id="loading-row">
-        <tr id="loading-table">
-            <td colspan="3">Loading data</td>
-        </tr>
-    </script>
     <script type="text/html" id="table-row">
         <tr id="loading-table">
             <td>{title}</td>
@@ -33,7 +34,11 @@
                 <th>Details</th>
             </tr>
         </thead>
-        <tbody id="films-table-body"></tbody>
+        <tbody id="films-table-body">
+            <tr id="loading-table">
+                <td colspan="3">Loading data</td>
+            </tr>
+        </tbody>
     </table>
     <script src="/web-worker-example/assets/js/helper/getTemplate.js"></script>
     <script src="/web-worker-example/assets/js/helper/supplant.js"></script>

@@ -3,7 +3,7 @@
     const swapiWorker = new Worker('/web-worker-example/assets/js/swapi/swapi-worker.js');
 
     function getList() {
-        holder.innerHTML = loadingTemplate;
+        loadingTemplate.style.display = "block";
         swapiWorker.postMessage({ route: "films" });
     }
     var filmList = [],
@@ -12,15 +12,17 @@
         holder = null;
 
     function getDomElements() {
-        loadingTemplate = d.getTemplate("loading-row");
+        loadingTemplate = d.getTemplate("loading-table");
         rowTemplate = d.getTemplate("table-row");
         holder = d.getElementById("films-table-body");
     }
 
     swapiWorker.onmessage = function(e) {
         console.log(e);
-        if (e.data)
+        if (e.data){
+            loadingTemplate.style.display = "none";
             setTimeout(() => render(e.data), 2000);
+        }
       }
       
 
