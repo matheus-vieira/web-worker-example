@@ -16,9 +16,6 @@
         filmTitle.addEventListener("input", function onInputHandler(e) {
             if (filmTitle.value.length < 3) return;
 
-            while (holder.lastElementChild.id != loadingTemplate.id)
-                holder.deleteRow(1);
-
             getList(filmTitle.value);
         });
     }
@@ -32,7 +29,11 @@
 
     function getList(name) {
         loadingTemplate.className = "";
-        swapiWorker.postMessage({ route: "film-list", params: { name } });
+
+        while (holder.lastElementChild.id != loadingTemplate.id)
+            holder.deleteRow(1);
+
+            swapiWorker.postMessage({ route: "film-list", params: { name } });
     }
 
     function render(obj) {
