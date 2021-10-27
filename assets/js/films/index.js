@@ -2,9 +2,7 @@
     "use strict";
     const swapiWorker = new Worker('/web-worker-example/assets/js/swapi/swapi-worker.js');
 
-    const VISUALLY_HIDDEN = "visually-hidden";
-    let filmList = [],
-        loadingTemplate = null,
+    let loadingTemplate = null,
         rowTemplate = null,
         holder = null,
         filmTitle = null;
@@ -24,13 +22,13 @@
 
     swapiWorker.onmessage = function (e) {
         if (e.data) {
-            loadingTemplate.classList.add(VISUALLY_HIDDEN);
+            d.getElementById("loading-table").className = "visually-hidden";
             render(e.data)
         }
     }
 
     function getList(name) {
-        loadingTemplate.className = "";
+        d.getElementById("loading-table").className = "";
 
         while (holder.lastElementChild.id != loadingTemplate.id)
             holder.deleteRow(1);
