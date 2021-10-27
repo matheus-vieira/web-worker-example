@@ -1,7 +1,3 @@
-importScripts(
-    '/web-worker-example/assets/js/helper/getTemplate.js',
-    '/web-worker-example/assets/js/helper/supplant.js'
-);
 (function (w, d) {
     "use strict";
     const swapiWorker = new Worker('/web-worker-example/assets/js/swapi/swapi-worker.js');
