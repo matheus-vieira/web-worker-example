@@ -30,7 +30,7 @@
     }
 
     function getList(name) {
-        loadingTemplate.className = null;
+        loadingTemplate.className = "";
 
         while (holder.lastElementChild.id != loadingTemplate.id)
             holder.deleteRow(1);
