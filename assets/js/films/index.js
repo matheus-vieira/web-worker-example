@@ -4,6 +4,8 @@
     let rowTemplate = null,
         loadingTemplateRegular = null,
         loadingTemplateWebWorker = null,
+        messageWebWorker = null,
+        messageRegular = null,
         holderRegular = null,
         holderWebWorker = null;
 
@@ -12,9 +14,11 @@
 
         loadingTemplateRegular = d.getElementById("loading-table");
         holderRegular = d.getElementById("films-table-body");
+        messageRegular = d.getElementById("message-cell-regular");
 
         loadingTemplateWebWorker = d.getElementById("loading-table-web-worker");
         holderWebWorker = d.getElementById("films-table-body-web-worker");
+        messageWebWorker = d.getElementById("message-cell-web-worker");
 
         d.getElementById("filmTitle").addEventListener("input", function onInputHandler(e) {
             if (filmTitle.value && filmTitle.value.length < 3) return;
@@ -34,7 +38,7 @@
     }
 
     swapiWorker.onmessage = function (e) {
-        e.data.message && (loadingTemplateWebWorker.innerHTML = e.data.message);
+        e.data.message && (messageWebWorker.innerHTML = e.data.message);
 
         // e.data.beforeResult &&
         //     holderWebWorker.lastElementChild.id != loadingTemplateWebWorker.id &&
@@ -62,6 +66,7 @@
         let url = "https://swapi.dev/api/films";
         if (name) url += "?search=" + name;
 
+        logRegular(`Calling: ${url}`);
         const response = await fetch(url)
         if (!response.ok) {
             console.log("HTTP-Error: " + response.status);
@@ -69,10 +74,15 @@
         }
 
         const json = await response.json();
+        logRegular(`Response returned with ${json.results.length} result(s)`);
         for (let i = 0; i < json.results.length; i++) {
             var parsedTpl = rowTemplate.supplant(json.results[i]);
             holderRegular.innerHTML += parsedTpl;
         }
+    }
+
+    function logRegular(msg) {
+        messageRegular.innerHTML = msg;
     }
     // Methods related with regular call
 
