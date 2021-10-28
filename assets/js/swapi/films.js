@@ -25,18 +25,12 @@ const getFilmList = async function ({ name, rowTemplate }) {
     for (let i = 0; i < json.results.length; i++) {
         sendMessage({ beforeResult: true })
     }
-    timeInterval = 200 * json.results.length;
-    setInterval(() => log("Preparing results"), timeInterval);
     
     timeInterval = 0;
     for (let i = 0; i < json.results.length; i++) {
         var parsedTpl = rowTemplate.supplant(json.results[i]);
-        timeInterval = 200 * i;
-        setInterval(() => sendMessage({ result: parsedTpl }), timeInterval);
+        sendMessage({ result: parsedTpl }
     }
-    timeInterval = 200 * json.results.length;
-    setInterval(() => log("Results fetched"), timeInterval);
-
     sendMessage({ end: true });
 };
 

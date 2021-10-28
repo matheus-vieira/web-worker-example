@@ -42,7 +42,7 @@
 
         e.data.result && (holderWebWorker.innerHTML += e.data.result);
 
-        e.data.end && (loadingTemplateWebWorker.className = "visually-hidden");
+        // e.data.end && (loadingTemplateWebWorker.className = "visually-hidden");
     }
     // Methods related with web worker
 
