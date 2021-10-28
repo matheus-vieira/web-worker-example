@@ -67,7 +67,7 @@
 
         const json = await response.json();
         for (let i = 0; i < json.results.length; i++) {
-            var parsedTpl = rowTemplate.supplant(obj);
+            var parsedTpl = rowTemplate.supplant(json.results[i]);
             render(holderRegular, parsedTpl);
         }
     }
