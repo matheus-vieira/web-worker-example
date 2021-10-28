@@ -28,7 +28,7 @@
     function getListWebWorker(name) {
         d.getElementById("loading-table-web-worker").className = "";
 
-        while (holderWebWorker.lastElementChild.id != loadingTemplate.id)
+        while (holderWebWorker.lastElementChild.id != loadingTemplateWebWorker.id)
         holderWebWorker.deleteRow(1);
 
         swapiWorker.postMessage({ route: "film-list", params: { name } });
@@ -47,7 +47,7 @@
     async function getListRegular(name) {
         d.getElementById("loading-table").className = "";
 
-        while (holderRegular.lastElementChild.id != loadingTemplate.id)
+        while (holderRegular.lastElementChild.id != loadingTemplateRegular.id)
             holderRegular.deleteRow(1);
 
         await loadFromApi(name);
