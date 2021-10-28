@@ -14,7 +14,7 @@
 
         loadingTemplateRegular = d.getElementById("loading-table");
         holderRegular = d.getElementById("films-table-body");
-        messageRegular = d.getElementById("message-cell-regular");
+        messageRegular = d.getElementById("message-cell");
 
         loadingTemplateWebWorker = d.getElementById("loading-table-web-worker");
         holderWebWorker = d.getElementById("films-table-body-web-worker");
