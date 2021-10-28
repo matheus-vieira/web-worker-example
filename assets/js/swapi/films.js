@@ -14,7 +14,7 @@ const getFilmList = async function ({ name, rowTemplate }) {
     const json = await response.json();
     for (let i = 0; i < json.results.length; i++) {
         var parsedTpl = rowTemplate.supplant(json.results[i]);
-        SWAPI_WORKER.postMessage(parsedTpl);
+        SWAPI_WORKER.postMessage({ result: parsedTpl });
     }
 
     SWAPI_WORKER.postMessage({ end: true });
