@@ -29,7 +29,7 @@ const getFilmList = async function ({ name, rowTemplate }) {
     timeInterval = 0;
     for (let i = 0; i < json.results.length; i++) {
         var parsedTpl = rowTemplate.supplant(json.results[i]);
-        sendMessage({ result: parsedTpl }
+        sendMessage({ result: parsedTpl });
     }
     sendMessage({ end: true });
 };
