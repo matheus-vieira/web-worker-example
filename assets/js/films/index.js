@@ -31,7 +31,7 @@
         while (holderWebWorker.lastElementChild.id != loadingTemplateWebWorker.id)
         holderWebWorker.deleteRow(1);
 
-        swapiWorker.postMessage({ route: "film-list", params: { name } });
+        swapiWorker.postMessage({ route: "film-list", params: { name, rowTemplate } });
     }
 
     swapiWorker.onmessage = function (e) {
@@ -66,13 +66,14 @@
         }
 
         const json = await response.json();
-        for (let i = 0; i < json.results.length; i++)
-            render(holderRegular, json.results[i]);
+        for (let i = 0; i < json.results.length; i++) {
+            var parsedTpl = rowTemplate.supplant(obj);
+            render(holderRegular, parsedTpl);
+        }
     }
 
-    function render(holder, obj) {
-        var parsedTpl = rowTemplate.supplant(obj);
-        holder.innerHTML += parsedTpl;
+    function render(holder, item) {
+        holder.innerHTML += item;
     }
 
     w.onload = function onLoad() {

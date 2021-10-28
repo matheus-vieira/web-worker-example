@@ -1,6 +1,7 @@
+importScripts('../helper/supplant.js')
 const URL = "https://swapi.dev/api/films";
 
-const getFilmList = async function ({ name }) {
+const getFilmList = async function ({ name, rowTemplate }) {
     let url = URL;
     if (name) url += "?search=" + name;
 
@@ -11,8 +12,10 @@ const getFilmList = async function ({ name }) {
     }
 
     const json = await response.json();
-    for (let i = 0; i < json.results.length; i++)
+    for (let i = 0; i < json.results.length; i++) {
+        var parsedTpl = rowTemplate.supplant(obj);
         SWAPI_WORKER.postMessage(json.results[i]);
+    }
 
     SWAPI_WORKER.postMessage({ end: true });
 };
