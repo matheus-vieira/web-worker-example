@@ -1,6 +1,5 @@
 (function (w, d) {
     "use strict";
-    const swapiWorker = new Worker('/web-worker-example/assets/js/swapi/swapi-worker.js');
 
     let rowTemplate = null,
         loadingTemplateRegular = null,
@@ -20,39 +19,40 @@
         d.getElementById("filmTitle").addEventListener("input", function onInputHandler(e) {
             if (filmTitle.value && filmTitle.value.length < 3) return;
 
-            getListRegular(filmTitle.value);
             getListWebWorker(filmTitle.value);
+            getListRegular(filmTitle.value);
         });
     }
 
+
+    // Methods related with web worker
+    const swapiWorker = new Worker('/web-worker-example/assets/js/swapi/swapi-worker.js');
+
     function getListWebWorker(name) {
-        d.getElementById("loading-table-web-worker").className = "";
-
-        while (holderWebWorker.lastElementChild.id != loadingTemplateWebWorker.id)
-        holderWebWorker.deleteRow(1);
-
+        loadingTemplateWebWorker.className = "";
         swapiWorker.postMessage({ route: "film-list", params: { name, rowTemplate } });
     }
 
     swapiWorker.onmessage = function (e) {
-        if (e.data.result) {
-            render(holderWebWorker, e.data)
-        }
+        e.data.message && (loadingTemplateRegular.innerHTML = e.data.message);
 
-        if (e.data.end) {
-            d.getElementById("loading-table-web-worker").className = "visually-hidden";
-        }
+        e.data.beforeResult && (holderWebWorker.deleteRow(1));
+
+        e.data.result && (holderWebWorker.innerHTML += e.data.result);
+
+        e.data.end && (loadingTemplateWebWorker.className = "visually-hidden");
     }
+    // Methods related with web worker
 
     async function getListRegular(name) {
-        d.getElementById("loading-table").className = "";
+        loadingTemplateRegular.className = "";
 
         while (holderRegular.lastElementChild.id != loadingTemplateRegular.id)
             holderRegular.deleteRow(1);
 
         await loadFromApi(name);
 
-        d.getElementById("loading-table").className = "visually-hidden";
+        loadingTemplateRegular.className = "visually-hidden";
     }
 
     async function loadFromApi(name) {
@@ -68,12 +68,8 @@
         const json = await response.json();
         for (let i = 0; i < json.results.length; i++) {
             var parsedTpl = rowTemplate.supplant(json.results[i]);
-            render(holderRegular, parsedTpl);
+            holderRegular.innerHTML += parsedTpl;
         }
-    }
-
-    function render(holder, item) {
-        holder.innerHTML += item;
     }
 
     w.onload = function onLoad() {
