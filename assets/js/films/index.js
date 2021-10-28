@@ -48,7 +48,7 @@
         d.getElementById("loading-table").className = "";
 
         while (holder.lastElementChild.id != loadingTemplate.id)
-            holder.deleteRow(1);
+            holderRegular.deleteRow(1);
 
         await loadFromApi(name);
 
