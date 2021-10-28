@@ -37,7 +37,7 @@
         e.data.message && (loadingTemplateWebWorker.innerHTML = e.data.message);
 
         e.data.beforeResult &&
-            holderWebWorker.lastElementChild.id != loadingTemplateRegular.id &&
+            holderWebWorker.lastElementChild.id != loadingTemplateWebWorker.id &&
             holderWebWorker.deleteRow(1);
 
         e.data.result && (holderWebWorker.innerHTML += e.data.result);
