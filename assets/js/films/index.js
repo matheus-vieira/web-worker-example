@@ -34,7 +34,7 @@
     }
 
     swapiWorker.onmessage = function (e) {
-        e.data.message && (loadingTemplateRegular.innerHTML = e.data.message);
+        e.data.message && (loadingTemplateWebWorker.innerHTML = e.data.message);
 
         e.data.beforeResult && (holderWebWorker.deleteRow(1));
 
@@ -44,6 +44,7 @@
     }
     // Methods related with web worker
 
+    // Methods related with regular call
     async function getListRegular(name) {
         loadingTemplateRegular.className = "";
 
@@ -71,6 +72,7 @@
             holderRegular.innerHTML += parsedTpl;
         }
     }
+    // Methods related with regular call
 
     w.onload = function onLoad() {
         getDomElements();
